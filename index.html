@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Student - Forms</title>
+    <style>
+        body,
+        input,
+        select,
+        button {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 20px;
+        }
+        th,
+        td {
+            padding: 4px;
+        }
+
+        ::placeholder {
+            font-size: 12px;
+        }
+
+        #Btn {
+            width: 100%;
+            background-color: aquamarine;
+
+        }
+
+        h1 {
+            margin-top: 100px;
+        }
+
+        select {
+            width: 100%;
+        }
+
+        #TableSelect{
+            margin-top: 10px;
+        }
+        #TableSelect th{
+            padding: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <center>
+        <h1>STUDENT FORM</h1>
+        <form>
+            <table border="2px" style="padding: 10px;">
+                <tr>
+                    <th>Name</th>
+                    <td>
+                        <input type="text" id="name1" placeholder="Enter Your Name">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Age</th>
+                    <td>
+                        <input type="number" id="age" placeholder="Enter Your Age">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td>
+                        <input type="radio" name="gender" value="Male" id="Male"> <label for="Male">Male</label>
+                        <input type="radio" name="gender" value="FeMale" id="FeMale"> <label for="FeMale">FeMale</label>
+                    </td>
+                </tr>
+                <tr>
+                    <th >Course</th>
+                    <td>
+                        <select id="Course">
+                            <option value="PYTHON">PYTHON</option>
+                            <option value="JAVA">JAVA</option>
+                            <option value="JavaScript">JavaScript</option>
+                            <option value="C++">C++</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>E-mail</th>
+                    <td><input type="email" placeholder="ex : abcd123@gmail.com" id="Email"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="button" id="Btn">Save</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+
+        <table id="TableSelect" border="2px" >
+            <tr>
+                <th>NAME</th>
+                <th>AGE</th>
+                <th>COURSE</th>
+                <th>GENDER</th>
+                <th>EMAIL</th>
+                <th>ACTION</th>
+            </tr>
+        </table>
+    </center>
+
+    <script>
+        document.getElementById("Btn").addEventListener("click", function () {
+            var name1 = document.getElementById("name1").value;
+            var Age = document.getElementById("age").value;
+            var Course = document.getElementById("Course").value;
+            var Email = document.getElementById("Email").value;
+            var gender = document.getElementsByName("gender")
+            var genderVal = ""
+            gender.forEach(function (bt) {
+                if (bt.checked) {
+                    genderVal = bt.value;
+                }
+            });
+
+            var tab = document.getElementById("TableSelect")
+            
+
+            var tr1 = document.createElement('tr')
+
+            var name1td = document.createElement('td')
+            name1td.textContent = name1;
+            tr1.appendChild(name1td)
+
+            var agetd = document.createElement('td')
+            agetd.textContent = Age;
+            tr1.appendChild(agetd)
+
+            var Coursetd = document.createElement('td')
+            Coursetd.textContent = Course;
+            tr1.appendChild(Coursetd)
+
+            var genderValtd = document.createElement('td')
+            genderValtd.textContent = genderVal;
+            tr1.appendChild(genderValtd)
+
+            var Emailtd = document.createElement('td')
+            Emailtd.textContent = Email;
+            tr1.appendChild(Emailtd)
+
+
+            var Btntd = document.createElement('td')
+            Btntd.innerHTML = "<button onclick='DeleteBtn(this)' style='background-color: red;color:white' >Delete</button>";
+            tr1.appendChild(Btntd)
+
+            tab.appendChild(tr1) 
+        })
+
+        function DeleteBtn(arg){
+            
+            arg.closest('tr').remove()
+        }
+    </script>
+
+</body>
+
+</html>
